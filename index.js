@@ -19,13 +19,11 @@ function reverseString(str) {
 }
 
 function isPalindrome(str) {
-  let strArr = str.split("")
-  if (str.length > 2 && strArr[0] === strArr[strArr.length - 1]) {
-    strArr.shift()
-    strArr.pop()
-    return isPalindrome(strArr.join(""))
+  if (str.length > 2 && str.slice(0,1) === str.slice(str.length - 1)) {
+    console.log(str.slice(1,str.length-1))
+    return isPalindrome(str.slice(1,str.length-1))
   } else {
-    return strArr[0] === strArr[strArr.length - 1]
+    return str.slice(0,1) === str.slice(str.length - 1)
   }
 }
 
@@ -34,5 +32,28 @@ function addUpTo(arr, index) {
     return arr[index] + addUpTo(arr, index - 1)
   } else {
     return arr[index]
+  }
+}
+
+function maxOf(arr) {
+  if (arr.length > 1 && arr[0] > arr[arr.length -1]) {
+    arr.pop()
+    return maxOf(arr)
+  } else if (arr.length > 1 && arr[0] < arr[arr.length -1]) {
+    arr.shift()
+    return maxOf(arr)
+  } else {
+    return arr[0]
+  }
+}
+
+function includesNumber(arr, num) {
+  if (arr[0] === num) {
+    return true
+  } else if (arr.length > 1) {
+    arr.shift()
+    return includesNumber(arr, num)
+  } else {
+    return arr[0] === num
   }
 }
